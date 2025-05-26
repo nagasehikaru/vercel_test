@@ -4,9 +4,9 @@ import { taskStore } from '../taskStore';
 // GET /api/tasks/[id] - get a specific task
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id: taskId } = await params;
+  const { id: taskId } = await context.params;
   const task = taskStore.getTaskById(taskId);
 
   if (!task) {
@@ -22,9 +22,9 @@ export async function GET(
 // PUT /api/tasks/[id] - update a specific task
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id: taskId } = await params;
+  const { id: taskId } = await context.params;
   const data = await request.json();
   
   const updatedTask = taskStore.updateTask(taskId, data);
@@ -42,9 +42,9 @@ export async function PUT(
 // DELETE /api/tasks/[id] - delete a specific task
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id: taskId } = await params;
+  const { id: taskId } = await context.params;
   const deletedTask = taskStore.deleteTask(taskId);
 
   if (!deletedTask) {

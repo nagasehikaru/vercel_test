@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { taskStore } from './taskStore';
 
 // GET /api/tasks - get all tasks
@@ -7,7 +7,7 @@ export async function GET() {
 }
 
 // POST /api/tasks - create a new task
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const data = await request.json();
   
   if (!data.title || typeof data.title !== 'string') {
